@@ -26,7 +26,7 @@ namespace IntegrationTest
             var grain = _clusterClient.GetGrain<ITestGrain>( 123 );
             var randomNumber = await grain.GetARandomNumberAsync();
 
-            Assert.IsType(typeof(int), randomNumber); // useless test because reasons
+            Assert.IsType<int>(randomNumber); // useless test because reasons
         }
 
         [Fact]
@@ -35,7 +35,7 @@ namespace IntegrationTest
             var grain = _clusterClient.GetGrain<ITestGrain>( 123 );
             var randomString = await grain.GetARandomStringAsync();
 
-            Assert.IsType(typeof(string), randomString); // useless test because reasons
+            Assert.IsType<string>(randomString); // useless test because reasons
         }
     }
 }
