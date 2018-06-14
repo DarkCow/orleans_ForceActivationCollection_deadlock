@@ -18,28 +18,30 @@ namespace Grains
             var stream = streamProvider.GetStream<string>(this.GetPrimaryKey(), "MyStreamNamespace");
             var subscriptionHandles = await stream.GetAllSubscriptionHandles();
 
-            if( subscriptionHandles == null || subscriptionHandles.Count == 0 )
+            // This is a common function in my real project
+            if(subscriptionHandles == null || subscriptionHandles.Count == 0)
             {
-                _streamHandle = await stream.SubscribeAsync( ObserveAsync );
+                _streamHandle = await stream.SubscribeAsync(ObserveAsync);
             }
-            else if( subscriptionHandles.Count == 1 )
+            else if(subscriptionHandles.Count == 1)
             {
-                _streamHandle = subscriptionHandles.First( );
-                await _streamHandle.ResumeAsync( ObserveAsync );
+                _streamHandle = subscriptionHandles.First();
+                await _streamHandle.ResumeAsync(ObserveAsync);
             }
-            else if( subscriptionHandles.Count > 1 )
+            else if(subscriptionHandles.Count > 1)
             {
-                foreach( var h in subscriptionHandles )
-                    await h.UnsubscribeAsync( );
+                foreach(var h in subscriptionHandles)
+                    await h.UnsubscribeAsync();
 
-                _streamHandle = await stream.SubscribeAsync( ObserveAsync );
+                _streamHandle = await stream.SubscribeAsync(ObserveAsync);
             }
+            //
         }
 
-        public async override Task OnDeactivateAsync( )
+        public async override Task OnDeactivateAsync()
         {
-            if( _streamHandle != null )
-                await _streamHandle.UnsubscribeAsync( );
+            if(_streamHandle != null)
+                await _streamHandle.UnsubscribeAsync();
         }
 
         public Task<int> GetARandomNumberAsync()
@@ -52,7 +54,7 @@ namespace Grains
             return Task.FromResult(_random.Next().ToString());
         }
 
-        private Task ObserveAsync( object _, StreamSequenceToken sst )
+        private Task ObserveAsync(object _, StreamSequenceToken sst)
         {
             return Task.CompletedTask;
         }
