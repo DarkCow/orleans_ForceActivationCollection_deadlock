@@ -11,22 +11,11 @@ namespace Silo
     {
         static async Task Main(string[] args)
         {
-            var siloBuilder = new SiloHostBuilder()
-                    .UseLocalhostClustering()
-                    .Configure<ClusterOptions>(options =>
-                    {
-                        options.ClusterId = "dev";
-                        options.ServiceId = "Orleans2GettingStarted";
-                    })
-                    .Configure<EndpointOptions>(options =>
-                        options.AdvertisedIPAddress = IPAddress.Loopback)
-                    .ConfigureLogging(logging => logging.AddConsole());
-
-            using (var host = siloBuilder.Build())
+            using( var service = new Service())
             {
-                await host.StartAsync();
+                await service.StartAsync();
 
-                Console.WriteLine("Press Any Key To Exit...");
+                Console.WriteLine("Press any key to exit...");
                 Console.ReadLine();
             }
         }
