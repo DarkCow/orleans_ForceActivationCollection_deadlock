@@ -1,8 +1,9 @@
 using System.Threading.Tasks;
+using Orleans;
 
-namespace Test
+namespace Interfaces
 {
-    public interface ITestGrain
+    public interface ITestGrain : IGrainWithIntegerKey
     {
         Task<int> GetARandomNumber();
         Task<string> GetARandomString();
