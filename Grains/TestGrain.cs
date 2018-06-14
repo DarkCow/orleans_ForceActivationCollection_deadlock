@@ -9,12 +9,12 @@ namespace Grains
     {
         private readonly Random _random = new Random();
 
-        public Task<int> GetARandomNumber()
+        public Task<int> GetARandomNumberAsync()
         {
             return Task.FromResult(_random.Next());
         }
 
-        public Task<string> GetARandomString()
+        public Task<string> GetARandomStringAsync()
         {
             return Task.FromResult(_random.Next().ToString());
         }

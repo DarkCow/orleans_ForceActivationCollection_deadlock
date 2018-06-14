@@ -5,7 +5,7 @@ namespace Interfaces
 {
     public interface ITestGrain : IGrainWithIntegerKey
     {
-        Task<int> GetARandomNumber();
-        Task<string> GetARandomString();
+        Task<int> GetARandomNumberAsync();
+        Task<string> GetARandomStringAsync();
     }
 }
