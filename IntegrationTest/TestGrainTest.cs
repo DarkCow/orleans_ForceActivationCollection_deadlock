@@ -16,6 +16,7 @@ namespace IntegrationTest
         public TestGrainTest(SiloFactory siloFactory)
         {
             _siloFactory = siloFactory;
+            _siloFactory.ResetAsync().Wait(); // Reset the Silo between each test
 
             _clusterClient = _siloFactory.CreateClientAsync().Result;
         }
