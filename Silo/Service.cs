@@ -17,6 +17,8 @@ namespace Silo
         {
             _siloBuilder = new SiloHostBuilder()
                 .UseLocalhostClustering()
+                .AddSimpleMessageStreamProvider("SMSProvider")
+                .AddMemoryGrainStorage("PubSubStore")
                 .Configure<ClusterOptions>(options =>
                 {
                     options.ClusterId = "dev";

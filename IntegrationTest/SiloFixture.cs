@@ -41,6 +41,7 @@ namespace Mri.Web.Common.Test
 
             clientBuilder = clientBuilder
                 .UseLocalhostClustering()
+                .AddSimpleMessageStreamProvider("SMSProvider")
                 .ConfigureApplicationParts(parts =>
                 {
                     parts.AddApplicationPart(typeof(Interfaces.ITestGrain).Assembly).WithReferences();
