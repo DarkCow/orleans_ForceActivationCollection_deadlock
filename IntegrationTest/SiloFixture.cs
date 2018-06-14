@@ -44,7 +44,7 @@ namespace Mri.Web.Common.Test
                 .ConfigureApplicationParts(parts =>
                 {
                     parts.AddApplicationPart(typeof(Interfaces.ITestGrain).Assembly).WithReferences();
-                } );
+                });
 
             var client = clientBuilder.Build();
             await client.Connect();
@@ -58,7 +58,7 @@ namespace Mri.Web.Common.Test
         }
     }
 
-    [CollectionDefinition( "Fixture" )]
+    [CollectionDefinition("Fixture")]
     public class EveryFixture : ICollectionFixture<SiloFactory>
     {
     }

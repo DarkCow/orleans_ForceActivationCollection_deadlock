@@ -7,7 +7,7 @@ using Xunit;
 
 namespace IntegrationTest
 {
-    [Collection( "Fixture" )]
+    [Collection("Fixture")]
     public class TestGrainTest
     {
         private readonly SiloFactory _siloFactory;
@@ -24,7 +24,7 @@ namespace IntegrationTest
         [Fact]
         public async Task TestRandomNumberAsync()
         {
-            var grain = _clusterClient.GetGrain<ITestGrain>( 123 );
+            var grain = _clusterClient.GetGrain<ITestGrain>(123);
             var randomNumber = await grain.GetARandomNumberAsync();
 
             Assert.IsType<int>(randomNumber); // useless test because reasons
@@ -33,7 +33,7 @@ namespace IntegrationTest
         [Fact]
         public async Task TestRandomStringAsync()
         {
-            var grain = _clusterClient.GetGrain<ITestGrain>( 123 );
+            var grain = _clusterClient.GetGrain<ITestGrain>(123);
             var randomString = await grain.GetARandomStringAsync();
 
             Assert.IsType<string>(randomString); // useless test because reasons
